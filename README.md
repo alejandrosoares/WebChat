@@ -38,7 +38,7 @@ streamlit run src/app.py
 
 ## Demostration video
 
-[![Demo Video](https://drive.google.com/file/d/1Z-C9yutQmIjwZEjLFsj9lrzaRTEUcz1Q/view?usp=sharing)](https://drive.google.com/file/d/1Z-C9yutQmIjwZEjLFsj9lrzaRTEUcz1Q/view?usp=sharing)
+[![Demo Video](https://drive.google.com/file/d/19oFXdhismVUNWLNoVhvjSX23qW1PxtgM/view?usp=sharing)](https://drive.google.com/file/d/19oFXdhismVUNWLNoVhvjSX23qW1PxtgM/view?usp=sharing)
 
 
 ## References
