@@ -34,16 +34,14 @@ for message in st.session_state.messages:
         st.markdown(message["content"])
 
 if prompt := st.chat_input("e.g. what are your services?"):
-    # Add user message to chat history
+
     st.session_state.messages.append({"role": "user", "content": prompt})
 
-    # Display user message in chat message container
     with st.chat_message("user"):
         st.markdown(prompt)
 
-    # Display assistant response in chat message container
     with st.chat_message("assistant"):
-        # Create answer chain
+
         model = get_openai_model()
         rm_handler = RecordManagerHandler()
         retriever = get_ensemble_retriever(
@@ -83,9 +81,7 @@ if prompt := st.chat_input("e.g. what are your services?"):
 
     st.session_state.messages.append({"role": "assistant", "content": full_response})
 
-    # Logging
     log_chat_interaction(
         question=prompt,
-        answer=full_response,
-        message="From ale"
+        answer=full_response
     )
