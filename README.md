@@ -12,7 +12,7 @@ WebChat is a chat bot that extracts and cleans the content of a website, allowin
 
 ## Installation
 
-1. Set the following environment variables in an .env file in project dir:
+1. Set the following environment variables in an .env file in project directory:
 ```
 OPENAI_API_KEY
 WEBSITE_NAME
@@ -20,7 +20,7 @@ WEBSITE_URL
 WEBSITE_DESCRIPTION
 ```
 
-2. Create a virtualenv and install dependencies:
+2. Create a virtual environment and install dependencies:
 ```
 pip install -r requirements.txt
 ```
@@ -38,7 +38,7 @@ streamlit run src/app.py
 
 ## Demostration video
 
-[![Demo Video](https://drive.google.com/file/d/1UXjRyDw2WFg18o_fShZhlbYkHMoE1XcS/view?usp=sharing)](https://drive.google.com/file/d/1UXjRyDw2WFg18o_fShZhlbYkHMoE1XcS/view?usp=sharing)
+[![Demo Video](https://drive.google.com/file/d/1Z-C9yutQmIjwZEjLFsj9lrzaRTEUcz1Q/view?usp=sharing)](https://drive.google.com/file/d/1Z-C9yutQmIjwZEjLFsj9lrzaRTEUcz1Q/view?usp=sharing)
 
 
 ## References
