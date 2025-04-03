@@ -41,43 +41,43 @@ if prompt := st.chat_input("e.g. what are your services?"):
         st.markdown(prompt)
 
     with st.chat_message("assistant"):
+        with st.spinner("Thinking..."):
+            model = get_openai_model()
+            rm_handler = RecordManagerHandler()
+            retriever = get_ensemble_retriever(
+                model=model,
+                rm_handler=rm_handler
+            )
 
-        model = get_openai_model()
-        rm_handler = RecordManagerHandler()
-        retriever = get_ensemble_retriever(
-            model=model,
-            rm_handler=rm_handler
-        )
+            use_chat_history = len(st.session_state.messages) > 1
 
-        use_chat_history = len(st.session_state.messages) > 1
+            chat_history = []
+            if use_chat_history:
+                for message in st.session_state.messages[:-1]:
+                    if message["role"] == "user":
+                        chat_history.append(HumanMessage(content=message["content"]))
+                    elif message["role"] == "assistant":
+                        chat_history.append(AIMessage(content=message["content"]))
 
-        chat_history = []
-        if use_chat_history:
-            for message in st.session_state.messages[:-1]:
-                if message["role"] == "user":
-                    chat_history.append(HumanMessage(content=message["content"]))
-                elif message["role"] == "assistant":
-                    chat_history.append(AIMessage(content=message["content"]))
+            answer_chain = create_chat_chain(
+                model=model,
+                retriever=retriever,
+                use_chat_history=use_chat_history,
+                k=6,
+            )
 
-        answer_chain = create_chat_chain(
-            model=model,
-            retriever=retriever,
-            use_chat_history=use_chat_history,
-            k=6,
-        )
+            message_placeholder = st.empty()
+            full_response = ""
+            for token in answer_chain.stream(
+                {
+                    "question": prompt,
+                    "chat_history": chat_history,
+                }
+            ):
+                full_response += token.content
+                message_placeholder.markdown(full_response + "â–Œ")
 
-        message_placeholder = st.empty()
-        full_response = ""
-        for token in answer_chain.stream(
-            {
-                "question": prompt,
-                "chat_history": chat_history,
-            }
-        ):
-            full_response += token.content
-            message_placeholder.markdown(full_response + "â–Œ")
-
-        message_placeholder.markdown(full_response)
+            message_placeholder.markdown(full_response)
 
     st.session_state.messages.append({"role": "assistant", "content": full_response})
 
