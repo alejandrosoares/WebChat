@@ -36,7 +36,9 @@ streamlit run src/app.py
 ```
 
 
-## Demostration video
+## Screenshot and demo video
+
+![Chat Screenshot](./assets/web_chat_screenshot.png)
 
 [![Demo Video](https://drive.google.com/file/d/19oFXdhismVUNWLNoVhvjSX23qW1PxtgM/view?usp=sharing)](https://drive.google.com/file/d/19oFXdhismVUNWLNoVhvjSX23qW1PxtgM/view?usp=sharing)
 
